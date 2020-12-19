@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.CharityServiceImpl;
 
@@ -21,10 +22,13 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String homeAction(Model model){
+    public ModelAndView homeAction(){
+        ModelAndView homePage = new ModelAndView("index");
         List<Institution> allInstitutions = service.getAllInstitutions();
-        model.addAttribute("institutions", allInstitutions);
-        return "index";
+        homePage.addObject("institutions", allInstitutions);
+        int sumAllOfBags = service.getSumAllOfBags();
+        homePage.addObject("bagsSum", sumAllOfBags);
+        return homePage;
     }
 
     @RequestMapping("/form")
