@@ -2,6 +2,7 @@ package pl.coderslab.charity.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 @Table(name = "institutions")
 @Data
 @NoArgsConstructor
+@ToString
 public class Institution {
 
     @Id
