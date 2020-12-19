@@ -12,5 +12,7 @@ public interface ICharityService {
 
     List<Institution> getAllInstitutions();
 
-    int getSumAllOfBags();
+    int getSumOfAllBags();
+
+    int countAllDonations();
 }

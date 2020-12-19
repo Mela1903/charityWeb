@@ -31,7 +31,12 @@ public class CharityServiceImpl implements ICharityService{
     }
 
     @Override
-    public int getSumAllOfBags() {
+    public int getSumOfAllBags() {
         return donationRepository.sumOfAllBags();
+    }
+
+    @Override
+    public int countAllDonations() {
+        return donationRepository.countAllDonations();
     }
 }

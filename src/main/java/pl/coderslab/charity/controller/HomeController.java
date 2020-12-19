@@ -26,8 +26,10 @@ public class HomeController {
         ModelAndView homePage = new ModelAndView("index");
         List<Institution> allInstitutions = service.getAllInstitutions();
         homePage.addObject("institutions", allInstitutions);
-        int sumAllOfBags = service.getSumAllOfBags();
+        int sumAllOfBags = service.getSumOfAllBags();
         homePage.addObject("bagsSum", sumAllOfBags);
+        int countAllDonations = service.countAllDonations();
+        homePage.addObject("donationsCount",countAllDonations);
         return homePage;
     }
 
