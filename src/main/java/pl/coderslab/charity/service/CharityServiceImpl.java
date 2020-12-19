@@ -29,4 +29,9 @@ public class CharityServiceImpl implements ICharityService{
     public List<Institution> getAllInstitutions() {
         return institutionRepository.findAll();
     }
+
+    @Override
+    public int getSumAllOfBags() {
+        return donationRepository.sumOfAllBags();
+    }
 }
