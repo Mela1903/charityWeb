@@ -33,8 +33,5 @@ public class HomeController {
         return homePage;
     }
 
-    @RequestMapping("/form")
-    public String formAction(Model model){
-        return "form";
-    }
+
 }
