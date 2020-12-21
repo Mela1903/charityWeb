@@ -3,6 +3,7 @@ package pl.coderslab.charity.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
@@ -38,5 +39,10 @@ public class CharityServiceImpl implements ICharityService{
     @Override
     public int countAllDonations() {
         return donationRepository.countAllDonations();
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
 }

@@ -2,7 +2,7 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 
   <head th:include="fragments/header/head :: head(~{::title})">
-    <title>Document</title>
+    <title>Home</title>
   </head>
 
   <body>
@@ -75,9 +75,9 @@
 
         <ul class="help--slides-items">
 
-          <th:block th:each="institution, varStat : ${institutions}">
+<!--          <th:block th:each="institution, varStat : ${institutions}">-->
 
-            <li th:if="${varStat.even}">
+            <li th:each="institution, varStat : ${institutions}" th:if="${varStat.odd}">
 
               <div class="col">
 
@@ -93,18 +93,19 @@
 
               </div>
 
+              <div th:unless="${varStat.index+1 < institutions.size()}" style="visibility: hidden;" class="col"></div>
+
             </li>
-          </th:block>
+<!--          </th:block>-->
         </ul>
 
       </div>
 
     </section>
 
-    <div th:replace="fragments/footer :: footer"></div>
+  <div th:replace="fragments/footer :: footer"></div>
 
-<!--    <script type="text/javascript" th:src="@{/js/app.js}"></script>-->
-    <script type="text/javascript" src="js/app.js"></script>
+  <script src="js/app.js"></script>
 
   </body>
 </html>
