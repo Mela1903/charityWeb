@@ -164,9 +164,34 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+
+      let street = document.getElementById("street").value;
+     // document.getElementById("street").innerHTML = document.newDonation.address.value;
+
+
+      }
+
+      // var allInputs = $( ":input" );
+      // var formChildren = $( "form > *");
+      //
+      // $( "form" ).submit(function ( event ) {
+      //   event.preventDefault();
+      // });
+
+      // function showSummary() {
+      //   var x = document.getElementById("newDonation");
+      //   var txt = "";
+      //
+      //   for (var i = 0; i < x.length; i++) {
+      //     txt = txt + x.elements[i].value
+      //   }
+      //   document.innerText = txt;
+      // }
+
     }
 
-  }
+
+
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);
