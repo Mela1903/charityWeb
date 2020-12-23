@@ -3,7 +3,9 @@ package pl.coderslab.charity.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.charity.dto.DonationDto;
 import pl.coderslab.charity.entity.Category;
+import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CharityServiceImpl implements ICharityService{
+public class CharityServiceImpl implements ICharityService {
 
     private final CategoryRepository categoryRepository;
     private final DonationRepository donationRepository;
@@ -45,4 +47,23 @@ public class CharityServiceImpl implements ICharityService{
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    @Override
+    public void saveDonation(DonationDto donationDto) {
+        Donation donation = new Donation();
+        donation.setId(donationDto.getId());
+        donation.setBagsQuantity(donationDto.getBagsQuantity());
+        donation.setCategories(donationDto.getCategories());
+        donation.setInstitution(donationDto.getInstitution());
+        donation.setCity(donationDto.getCity());
+        donation.setStreet(donationDto.getStreet());
+        donation.setZipCode(donationDto.getZipCode());
+        donation.setPickUpDate(donationDto.getPickUpDate());
+        donation.setPickUpTime(donationDto.getPickUpTime());
+        donation.setPickUpComment(donationDto.getPickUpComment());
+
+        donationRepository.save(donation);
+
+    }
 }
+
