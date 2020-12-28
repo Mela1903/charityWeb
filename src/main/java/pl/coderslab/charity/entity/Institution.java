@@ -20,6 +20,7 @@ public class Institution {
     private int id;
 
     private String name;
+    private String shortName;
     private String description;
 
     @OneToMany(mappedBy = "institution")

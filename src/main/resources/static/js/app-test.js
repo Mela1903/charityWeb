@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     validate() {
 
+
       // data-step=1
       if (this.currentStep === 1) {
         let checkboxElements = form.querySelectorAll("input[type='checkbox']:checked");
@@ -229,6 +230,43 @@ document.addEventListener("DOMContentLoaded", function() {
     updateForm() {
       this.$step.innerText = this.currentStep;
 
+      // TODO: Validation
+
+        // const steps = Array.from(document.querySelectorAll('form div[data-step]'));
+        // let index = 0;
+        // const active = document.querySelector('form div[data-step].active');
+        // index = steps.indexOf(active);
+        // steps[index].classList.remove('active');
+        //
+        // console.log(steps);
+
+        // form.submit() {
+        //   return false
+        // };
+        //
+        // this.currentStep = 1;
+
+        // let address = document.querySelectorAll("div[data-step='4'] div[class='form-section form-section--columns'] input[type='text']");
+        // let street = address[0].value;
+        // let city = address[1].value;
+        // let zipcode = address[2].value;
+        //
+        // let email = document.forms["myform"]["phone"];
+        // if (email.value == "") {
+        //   alert("Please enter your phone.");
+        //   return false;
+        // }
+        //
+        // let text = "";
+        //
+        // if (street.length === 0) {
+        //   text = "Błąd";
+        //   form.querySelector("div[data-step='4']").innerHTML = text;
+        //   return valid;
+        // }
+
+
+
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
@@ -241,38 +279,18 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
-
-      let categories = form.querySelectorAll("input[type='checkbox']:checked");
-      let categoriesText = "";
-      for (let i = 0; i < categories.length; i++) {
-        categoriesText += categories[i].parentNode.lastElementChild.textContent.split(", ").values();
-      }
-      // console.log(categories);
-
-      let bagQuantityElement = form.querySelector("input[type='number']").value;
-
-      let donationDetails = document.querySelectorAll("div[data-step='5'] .summary div[class='form-section'] .summary--text");
-      console.log(donationDetails);
-      let numberOfBags = donationDetails[0];
-      console.log(bagQuantityElement);
-      if (bagQuantityElement < 2) {
-        numberOfBags.innerText = bagQuantityElement + " worek";
-      } else if (bagQuantityElement < 5) {
-        numberOfBags.innerText = bagQuantityElement + " worki";
-      } else {
-        numberOfBags.innerHTML = bagQuantityElement + " worków";
-      }
-
-      let address = form.querySelectorAll("div[data-step='4'] div[class='form-section form-section--columns'] input[type='text']");
+      //
+      let address = document.querySelectorAll("div[data-step='4'] div[class='form-section form-section--columns'] input[type='text']");
       let street = address[0].value;
       let city = address[1].value;
       let zipcode = address[2].value;
+
       let phone = document.querySelector("input[type='tel']").value;
       let pickUpDate = document.querySelector("input[type='date']").value;
       let pickUpTime = document.querySelector("input[type='time']").value;
       let pickUpComments = document.querySelector("textarea").value;
 
-      const contactDetails = form.querySelectorAll("div[data-step='5'] .summary div[class='form-section form-section--columns'] ul li");
+      const contactDetails = document.querySelectorAll("div[data-step='5'] .summary div[class='form-section form-section--columns'] ul li");
       contactDetails[0].innerText = street;
       contactDetails[1].innerText = city;
       contactDetails[2].innerText = zipcode;
@@ -281,14 +299,46 @@ document.addEventListener("DOMContentLoaded", function() {
       contactDetails[5].innerText = pickUpTime;
       contactDetails[6].innerText = pickUpComments;
 
+      let allCheckboxes = form.querySelectorAll("input[type='checkbox']:checked");
+      let checkboxText = "";
+      for (let i = 0; i < allCheckboxes.length; i++) {
+        checkboxText += allCheckBoxes[i].parentNode.lastElementChild.textContent.split(", ").values();
+      }
+      console.log(allCheckboxes);
+
       let radioButton = form.querySelector("input[type='radio']:checked");
 
       }
     }
 
+    // origin
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);
+  }
+
+  function setErrorMessage(el, message) {
+    $(el).data('errorMessage', message);                 // Przechowywanie komunikatu o błędzie wraz z elementem.
+  }
+
+  function getErrorMessage(el) {
+    return $(el).data('errorMessage') || el.title;       // Pobranie komunikatu błędu lub tytułu elementu.
+  }
+
+  function showErrorMessage(el) {
+    var $el = $(el);                                     // Wyszukanie elementu z błędem.
+    var errorContainer = $el.siblings('.error.message'); // Czy zawiera już jakiekolwiek błędy?
+
+    if (!errorContainer.length) {                         // Jeżeli nie znaleziono komunikatów o błędach.
+      // Utworzenie elementu <span> do przechowywania błędu i dodanie go po elemencie, w którym wystąpił błąd.
+      errorContainer = $('<span class="error message"></span>').insertAfter($el);
+    }
+    errorContainer.text(getErrorMessage(el));             // Dodanie komunikatu o błędzie.
+  }
+
+  function removeErrorMessage(el) {
+    var errorContainer = $(el).siblings('.error.message'); // Pobranie elementów równorzędnych tej kontrolki formularza używanej do przechowywania komunikatu błędu.
+    errorContainer.remove();                               // Usunięcie elementu zawierającego komunikat błędu.
   }
 
 });

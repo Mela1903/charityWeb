@@ -33,6 +33,7 @@ public class Donation {
     private String street;
     private String city;
     private String zipCode;
+    private String phone;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate pickUpDate;
