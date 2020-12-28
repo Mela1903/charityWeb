@@ -58,6 +58,7 @@ public class CharityServiceImpl implements ICharityService {
         donation.setCity(donationDto.getCity());
         donation.setStreet(donationDto.getStreet());
         donation.setZipCode(donationDto.getZipCode());
+        donation.setPhone(donationDto.getPhone());
         donation.setPickUpDate(donationDto.getPickUpDate());
         donation.setPickUpTime(donationDto.getPickUpTime());
         donation.setPickUpComment(donationDto.getPickUpComment());
