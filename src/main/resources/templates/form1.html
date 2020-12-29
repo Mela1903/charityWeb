@@ -61,7 +61,7 @@
   <div class="form--steps-container">
     <div class="form--steps-counter">Krok <span>1</span>/4</div>
 <!--    id="newDonation"-->
-    <form  action="#" th:action="@{/donation/save}" th:object="${donation}" method="post" id="myform" name="myform">
+    <form  action="#" th:action="@{/donation/save}" th:object="${donation}" method="post">
       <!-- STEP 1: class .active is switching steps -->
       <div data-step="1" class="active">
         <h3>Zaznacz co chcesz oddać:</h3>
@@ -184,12 +184,12 @@
             <ul>
               <li>
                 <span class="icon icon-bag"></span>
-                <span class="summary--text">4 worki ubrań w dobrym stanie dla dzieci</span>
+                <span class="summary--text"></span>
               </li>
 
               <li>
                 <span class="icon icon-hand"></span>
-                <span class="summary--text">Dla fundacji "Mam marzenie" w Warszawie</span>
+                <span class="summary--text"></span>
               </li>
             </ul>
           </div>
