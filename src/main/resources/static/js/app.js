@@ -155,14 +155,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // data-step=1
       if (this.currentStep === 1) {
-        let checkboxElements = form.querySelectorAll("input[type='checkbox']:checked");
-        let checkboxCounter = 0;
-        for (let i = 0; i < checkboxElements.length; i++) {
-          if (checkboxElements[i].checked) {
-            checkboxCounter++
+        let categories = form.querySelectorAll("input[type='checkbox']:checked");
+        let categoriesCounter = 0;
+        for (let i = 0; i < categories.length; i++) {
+          if (categories[i].checked) {
+            categoriesCounter++
           }
         }
-        if (checkboxCounter > 0) {
+        if (categoriesCounter > 0) {
           return true;
         } else {
           alert("wybierz conajmniej jedną opcję");
@@ -243,11 +243,13 @@ document.addEventListener("DOMContentLoaded", function() {
       // TODO: get data from inputs and show them in summary
 
       let categories = form.querySelectorAll("input[type='checkbox']:checked");
-      let categoriesText = "";
-      for (let i = 0; i < categories.length; i++) {
-        categoriesText += categories[i].parentNode.lastElementChild.textContent.split(", ").values();
+
+      let categoriesText = [];
+      for (let checkbox of categories) {
+        categoriesText.push(checkbox.parentNode.lastElementChild.textContent);
       }
-      // console.log(categories);
+
+      console.log(categoriesText);
 
       let bagQuantityElement = form.querySelector("input[type='number']").value;
 
@@ -256,11 +258,11 @@ document.addEventListener("DOMContentLoaded", function() {
       let numberOfBags = donationDetails[0];
       console.log(bagQuantityElement);
       if (bagQuantityElement < 2) {
-        numberOfBags.innerText = bagQuantityElement + " worek";
+        numberOfBags.innerText = bagQuantityElement + " worek zawierający " + categoriesText.join(" oraz ");
       } else if (bagQuantityElement < 5) {
-        numberOfBags.innerText = bagQuantityElement + " worki";
+        numberOfBags.innerText = bagQuantityElement + " worki zawierające " + categoriesText.join(" oraz ");
       } else {
-        numberOfBags.innerHTML = bagQuantityElement + " worków";
+        numberOfBags.innerText = bagQuantityElement + " worków zawierających " + categoriesText.join(" oraz ");
       }
 
       let address = form.querySelectorAll("div[data-step='4'] div[class='form-section form-section--columns'] input[type='text']");
@@ -281,8 +283,9 @@ document.addEventListener("DOMContentLoaded", function() {
       contactDetails[5].innerText = pickUpTime;
       contactDetails[6].innerText = pickUpComments;
 
-      let radioButton = form.querySelector("input[type='radio']:checked");
-
+      let institutions = form.querySelector("input[type='radio']:checked").parentNode.lastElementChild.firstElementChild.textContent;
+      let institutionText = donationDetails[1];
+      institutionText.innerText = "Dla fundacji " + institutions;
       }
     }
 
