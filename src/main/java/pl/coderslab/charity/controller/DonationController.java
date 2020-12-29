@@ -28,8 +28,6 @@ public class DonationController {
     @GetMapping("/donation/save")
     public ModelAndView saveDonation(){
         ModelAndView mav = new ModelAndView("form1");
-
-//        Donation donation = new Donation();
         mav.addObject("donation", new DonationDto());
 
         List<Category> allCategories = service.getAllCategories();
