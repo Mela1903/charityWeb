@@ -12,15 +12,21 @@
 
     <section class="login-page">
       <h2>Załóż konto</h2>
-      <form>
+      <form action="#" th:action="@{/register}" th:object="${user}" method="post">
         <div class="form-group">
-          <input type="email" name="email" placeholder="Email" />
+          <input type="text" name="firstName" th:field="*{firstName}" placeholder="Imię" />
         </div>
         <div class="form-group">
-          <input type="password" name="password" placeholder="Hasło" />
+          <input type="text" name="lastName" th:field="*{lastName}" placeholder="Nazwisko" />
         </div>
         <div class="form-group">
-          <input type="password" name="password2" placeholder="Powtórz hasło" />
+          <input type="email" name="email" th:field="*{email}" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" th:field="*{password}" placeholder="Hasło" />
+        </div>
+        <div class="form-group">
+          <input type="password" name="password2" th:field="*{repassword}" placeholder="Powtórz hasło" />
         </div>
 
         <div class="form-group form-group--buttons">
