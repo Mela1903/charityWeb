@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
   <head th:include="fragments/header/head :: head(~{::title})">
     <title>Home</title>
@@ -8,6 +8,7 @@
   <body>
 
   <header th:insert="fragments/header/default :: defaultHeader">
+
   </header>
 
     <section id="stats" class="stats">
